@@ -10,4 +10,4 @@
 ## Example
 - after inputting the option contract information, the program will output `simulation.txt`
 - run `python3 plot.py` and when prompted enter the input file name which should display a graph like the following
-<img src="Example/example.png" width="50%" height="50%">
+<img src="Example/example.png">
