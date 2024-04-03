@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <random>
+#include<chrono>
 
 using namespace std; 
 
@@ -15,7 +17,8 @@ public:
 private:
 
 	double normal_dist(double sigma);
-
+  unsigned seed;
+  default_random_engine generator;
 	double stockPrice;
 	double time;
 	double vol;

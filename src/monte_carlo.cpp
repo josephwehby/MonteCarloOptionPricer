@@ -1,8 +1,5 @@
 #include "monte_carlo.hpp"
 #include <iostream>
-#include <random>
-#include <vector>
-#include <chrono>
 
 Monte_Carlo::Monte_Carlo()
 {
@@ -18,12 +15,14 @@ Monte_Carlo::Monte_Carlo()
 Monte_Carlo::Monte_Carlo(double sP, double T, double V, double M, int step, int sim)
 {
 	stockPrice = sP;
-	time = T;
+	time = T/252;
 	vol = V;
 	mu = M;
 	steps = step;
-
-	dt = time / steps;
+  seed = chrono::steady_clock::now().time_since_epoch().count();
+	generator = default_random_engine(seed);
+  
+  dt = time / steps;
 	sims = sim;
 }
 
@@ -63,9 +62,6 @@ vector < vector <double> > Monte_Carlo::Simulate()
 // randomly select values from normal distribution 
 double Monte_Carlo::normal_dist(double sigma)
 {
-	unsigned seed = chrono::steady_clock::now().time_since_epoch().count();
-	default_random_engine generator(seed);
 	normal_distribution<double> dist(0, sigma);
-
 	return dist(generator);
 }
